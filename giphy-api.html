@@ -6,45 +6,52 @@
   <title>Giphy API</title>
 </head>
 
-<body> 
-    <button id="DBZ-button">DBZ</button> 
-    <div id="images"></div>
+<body>
+  <button id="DBZ-button">DBZ</button>
+  <div id="images"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">       
-  
-     $("#button").on("click", function()    {     
+  <script type="text/javascript">
 
-      var character = $(this).attr("data-character"); 
+    $("#button").on("click", function () {
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    character + "&api_key=ZBQ4DcPWStP4kFTILa3rjPLTnLIxnH1o&limit=10";
+      var character = $(this).attr("data-character");
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-      //
-    }).then(function(response) {
-      console.log(response);
-       
-    //
-    var imageURL = 
-    response.data.image_original_url;  
-      
-     //
-    var gokuImage = $("<img>");
-       
-     //
-     gokuImage.attr("src", imageURL);
-     gokuImage.attr("alt", "goku image"); 
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        character + "&api_key=ZBQ4DcPWStP4kFTILa3rjPLTnLIxnH1o&limit=10";
 
-     //
-     $("#images").text(gokuImage);
-   });
-  });
-  </script>   
-  <link rel="stylesheet" type="text/css" href="style.css">   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">     
-  
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+        //
+      })
+        .then(function (response) {
+          console.log(queryURL);
+
+          console.log(response);
+          var results = response.data;
+
+          for (var i = 0; i < results.length; i++) {  
+
+             var characterDiv = $("<div>"); 
+
+
+            //
+            var characterImage = $("<img>");
+
+            //
+            gokuImage.attr("src", imageURL);
+            gokuImage.attr("alt", "goku image");
+
+            //
+            $("#images").text(gokuImage);
+          }
+        });
+    });
+  </script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -52,10 +59,13 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="script.js">Home</a></li>
-        <div class="button">Goku</div>  
-        <div class="button">Vegeta</div> 
+        <div class="btn-group">
+          <button data-character="goku">Goku</button>
+          <button data-character="vegeta">Vegeta</button>
+          <button data-character="Gohan">Gohan</button>
+        </div>
 
-        <form class="navbar-form navbar-left" action="/action_page.php"> 
+        <form class="navbar-form navbar-left" action="/action_page.php">
           <br>
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
@@ -65,9 +75,9 @@
         </form>
       </ul>
     </div>
-  </nav>      
+  </nav>
 
-  <h2>Click on any tab to view your DBZ character as a Gif</h2> 
+  <h2>Click on any tab to view your DBZ character as a Gif</h2>
   <h3>Have fun!</h3>
 
 
@@ -88,7 +98,7 @@
 
 
 
-<script type="text/javascript" src="giphy-api.html/javascript/script.js"></script> 
+  <script type="text/javascript" src="giphy-api.html/javascript/script.js"></script>
 
 </body>
 
